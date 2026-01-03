@@ -6,6 +6,10 @@ function Set-ClipboardFile {
     .DESCRIPTION
         This function uses the .NET Windows Forms API to place files on the clipboard. 
         Once set, these files can be pasted into File Explorer or other applications using Ctrl+V.
+
+        Source - https://stackoverflow.com/a/71616862
+        Posted by Eric Eskildsen, modified by community.
+        Retrieved 2026-01-04, License - CC BY-SA 4.0
     
     .PARAMETER Path
         The path to the file(s) to copy. Supports wildcards.
