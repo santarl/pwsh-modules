@@ -17,6 +17,9 @@ function Set-ClipboardFile {
     .PARAMETER LiteralPath
         The literal path to the file(s) to copy. Use this if the path contains special characters like square brackets.
     
+    .PARAMETER Quiet
+        Suppresses the output confirming which files were copied.
+    
     .EXAMPLE
         Set-ClipboardFile -Path .\MyDocument.pdf
         Sets the clipboard to a single document.
@@ -34,7 +37,11 @@ function Set-ClipboardFile {
 
         [Parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true, ParameterSetName = "LiteralPath")]
         [Alias("PSPath")]
-        [string[]]$LiteralPath
+        [string[]]$LiteralPath,
+
+        [Parameter()]
+        [Alias('Q')]
+        [switch]$Quiet
     )
 
     begin {
@@ -68,7 +75,13 @@ function Set-ClipboardFile {
         if ($fileCollection.Count -gt 0) {
             # Note: SetFileDropList replaces the current clipboard content.
             [System.Windows.Forms.Clipboard]::SetFileDropList($fileCollection)
-            Write-Host "Successfully set clipboard to $($fileCollection.Count) file(s)." -ForegroundColor Green
+            
+            if (-not $Quiet) {
+                Write-Host "Copied to clipboard:" -ForegroundColor Cyan
+                foreach ($file in $fileCollection) {
+                    Write-Host " + $file" -ForegroundColor Green
+                }
+            }
         }
     }
 }
