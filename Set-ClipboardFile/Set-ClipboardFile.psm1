@@ -23,7 +23,8 @@ function Set-ClipboardFile {
     #>
     [CmdletBinding(DefaultParameterSetName = "Path")]
     param(
-        [Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true, ParameterSetName = "Path")]
+        [Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, ParameterSetName = "Path")]
+        [Alias("FullName")]
         [string[]]$Path,
 
         [Parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true, ParameterSetName = "LiteralPath")]
