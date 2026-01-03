@@ -62,6 +62,11 @@ scbf *.jpg
 
 A test script is included in `tests/Test-Comparison.ps1` to verify the behavior of `Start-ForegroundProcess` against standard PowerShell commands.
 
+## 📜 Credits
+
+### Set-ClipboardFile
+The core logic for `Set-ClipboardFile` was adapted from a [Stack Overflow answer](https://stackoverflow.com/a/71616862) by [Eric Eskildsen](https://stackoverflow.com/users/3806701/eric-eskildsen), licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+
 ## 📝 License
 
 This project is licensed under the [MIT License](LICENSE).
