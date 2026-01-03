@@ -100,8 +100,12 @@ function Start-ForegroundProcess {
     }
     finally {
         # CRITICAL: Always clean up the event subscriptions.
-        if ($outputEvent) { Unregister-Event -SubscriptionId $outputEvent.Id }
-        if ($errorEvent) { Unregister-Event -SubscriptionId $errorEvent.Id }
+        if ($outputEvent -and (Get-EventSubscriber -SubscriptionId $outputEvent.Id -ErrorAction SilentlyContinue)) { 
+            Unregister-Event -SubscriptionId $outputEvent.Id -ErrorAction SilentlyContinue 
+        }
+        if ($errorEvent -and (Get-EventSubscriber -SubscriptionId $errorEvent.Id -ErrorAction SilentlyContinue)) { 
+            Unregister-Event -SubscriptionId $errorEvent.Id -ErrorAction SilentlyContinue 
+        }
     }
 }
 
