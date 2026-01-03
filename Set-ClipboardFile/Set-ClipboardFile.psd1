@@ -5,7 +5,7 @@
     Author = 'Atef'
     CompanyName = 'Atef'
     Copyright = '(c) 2026 Atef. All rights reserved.'
-    Description = 'Sets files to the Windows clipboard for pasting in Explorer or other apps.'
+    Description = 'Sets actual files to the Windows clipboard (FileDropList) for pasting into Explorer, emails, or other apps. Unlike Set-Clipboard, this handles the files themselves, not just their text paths.'
     PowerShellVersion = '5.1'
     FunctionsToExport = @('Set-ClipboardFile')
     CmdletsToExport = @()

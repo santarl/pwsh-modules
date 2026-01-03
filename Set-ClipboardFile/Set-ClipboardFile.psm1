@@ -1,11 +1,12 @@
 function Set-ClipboardFile {
     <#
     .SYNOPSIS
-        Sets the Windows clipboard to the specified file(s) (FileDropList).
+        Sets actual files (not just paths) to the Windows clipboard (FileDropList).
     
     .DESCRIPTION
-        This function uses the .NET Windows Forms API to place files on the clipboard. 
-        Once set, these files can be pasted into File Explorer or other applications using Ctrl+V.
+        This function uses the .NET Windows Forms API to place the actual file objects on the clipboard. 
+        Unlike Set-Clipboard, which typically handles text or objects, this sets a "FileDropList". 
+        This allows you to paste the files directly into File Explorer, emails, or any other application using Ctrl+V.
 
         Source - https://stackoverflow.com/a/71616862
         Posted by Eric Eskildsen, modified by community.

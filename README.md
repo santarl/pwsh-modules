@@ -42,12 +42,13 @@ Start-ForegroundProcess -FilePath "cmd.exe" -ArgumentList "/c echo Hello" -Wait
 ```
 
 ### 3. Set-ClipboardFile
-A utility to set files to the Windows clipboard so they can be pasted into File Explorer, emails, or other applications.
+A utility to set actual files to the Windows clipboard so they can be pasted into File Explorer, emails, or other applications.
 
 **Features:**
-*   **Explorer Integration:** Files are copied as a "FileDropList," meaning they behave exactly like files copied from within Explorer (Ctrl+C).
-*   **Batch Support:** Copy multiple files at once using wildcards.
-*   **Alias:** `scbf` (similar to `scb` for `Set-Clipboard`).
+*   **Actual File Copy:** Unlike `Set-Clipboard` (which copies the text of a path), this copies the file object itself (FileDropList). 
+*   **Explorer Integration:** Files behave exactly like files copied from within Explorer (Ctrl+C).
+*   **Batch Support:** Copy multiple files at once using wildcards or the pipeline.
+*   **Alias:** `scbf` (specifically for **F**iles, differentiating from `scb` for `Set-Clipboard`).
 *   **Detailed Output:** Lists the files copied by default (use `-Quiet` to suppress).
 
 **Usage:**
