@@ -1,11 +1,11 @@
-function Copy-FileToClipboard {
+function Set-ClipboardFile {
     <#
     .SYNOPSIS
-        Copies one or more files to the Windows clipboard as a FileDropList.
+        Sets the Windows clipboard to the specified file(s) (FileDropList).
     
     .DESCRIPTION
         This function uses the .NET Windows Forms API to place files on the clipboard. 
-        Once copied, these files can be pasted into File Explorer or other applications using Ctrl+V.
+        Once set, these files can be pasted into File Explorer or other applications using Ctrl+V.
     
     .PARAMETER Path
         The path to the file(s) to copy. Supports wildcards.
@@ -14,12 +14,12 @@ function Copy-FileToClipboard {
         The literal path to the file(s) to copy. Use this if the path contains special characters like square brackets.
     
     .EXAMPLE
-        Copy-FileToClipboard -Path .\MyDocument.pdf
-        Copies a single document to the clipboard.
+        Set-ClipboardFile -Path .\MyDocument.pdf
+        Sets the clipboard to a single document.
     
     .EXAMPLE
-        Copy-FileToClipboard -Path *.jpg
-        Copies all JPG files in the current directory to the clipboard.
+        Set-ClipboardFile -Path *.jpg
+        Sets the clipboard to all JPG files in the current directory.
     #>
     [CmdletBinding(DefaultParameterSetName = "Path")]
     param(
@@ -62,9 +62,9 @@ function Copy-FileToClipboard {
         if ($fileCollection.Count -gt 0) {
             # Note: SetFileDropList replaces the current clipboard content.
             [System.Windows.Forms.Clipboard]::SetFileDropList($fileCollection)
-            Write-Host "Successfully copied $($fileCollection.Count) file(s) to the clipboard." -ForegroundColor Green
+            Write-Host "Successfully set clipboard to $($fileCollection.Count) file(s)." -ForegroundColor Green
         }
     }
 }
 
-Export-ModuleMember -Function Copy-FileToClipboard
+Export-ModuleMember -Function Set-ClipboardFile
