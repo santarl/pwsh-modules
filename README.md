@@ -41,6 +41,22 @@ Start-ForegroundProcess -FilePath "notepad.exe"
 Start-ForegroundProcess -FilePath "cmd.exe" -ArgumentList "/c echo Hello" -Wait
 ```
 
+### 3. Copy-FileToClipboard
+A utility to copy files to the Windows clipboard so they can be pasted into File Explorer, emails, or other applications.
+
+**Features:**
+*   **Explorer Integration:** Files are copied as a "FileDropList," meaning they behave exactly like files copied from within Explorer (Ctrl+C).
+*   **Batch Support:** Copy multiple files at once using wildcards.
+
+**Usage:**
+```powershell
+# Copy a single file
+Copy-FileToClipboard -Path "C:\MyFolder\Report.pdf"
+
+# Copy all images in a folder
+Copy-FileToClipboard -Path "C:\Photos\*.jpg"
+```
+
 ## 🧪 Testing
 
 A test script is included in `tests/Test-Comparison.ps1` to verify the behavior of `Start-ForegroundProcess` against standard PowerShell commands.
