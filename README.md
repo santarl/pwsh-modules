@@ -47,14 +47,15 @@ A utility to set files to the Windows clipboard so they can be pasted into File 
 **Features:**
 *   **Explorer Integration:** Files are copied as a "FileDropList," meaning they behave exactly like files copied from within Explorer (Ctrl+C).
 *   **Batch Support:** Copy multiple files at once using wildcards.
+*   **Alias:** `scbf` (similar to `scb` for `Set-Clipboard`).
 
 **Usage:**
 ```powershell
 # Copy a single file
 Set-ClipboardFile -Path "C:\MyFolder\Report.pdf"
 
-# Copy all images in a folder
-Set-ClipboardFile -Path "C:\Photos\*.jpg"
+# Using the alias
+scbf *.jpg
 ```
 
 ## 🧪 Testing

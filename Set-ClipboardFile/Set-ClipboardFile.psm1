@@ -22,6 +22,7 @@ function Set-ClipboardFile {
         Sets the clipboard to all JPG files in the current directory.
     #>
     [CmdletBinding(DefaultParameterSetName = "Path")]
+    [Alias('scbf')]
     param(
         [Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, ParameterSetName = "Path")]
         [Alias("FullName")]
@@ -68,4 +69,4 @@ function Set-ClipboardFile {
     }
 }
 
-Export-ModuleMember -Function Set-ClipboardFile
+Export-ModuleMember -Function Set-ClipboardFile -Alias scbf

@@ -10,5 +10,5 @@
     FunctionsToExport = @('Set-ClipboardFile')
     CmdletsToExport = @()
     VariablesToExport = @()
-    AliasesToExport = @()
+    AliasesToExport = @('scbf')
 }
