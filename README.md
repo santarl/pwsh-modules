@@ -63,6 +63,10 @@ scbf *.jpg
 scbf *.png -Quiet
 ```
 
+### 4. [GitBinProxy](https://github.com/santarl/pwsh-modules/blob/main/GitBinProxy/README.md)
+
+A lightweight PowerShell module that proxies the GNU utilities included with Git for Windows (like sed, awk, grep, ls, etc.) into a single command: gbin.
+
 ## 🧪 Testing
 
 A test script is included in `tests/Test-Comparison.ps1` to verify the behavior of `Start-ForegroundProcess` against standard PowerShell commands.
