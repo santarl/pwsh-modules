@@ -17,11 +17,9 @@ function gbin {
         [ArgumentCompleter({
             param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameters)
             
-            # Use the helper function inside the completer
             $gitPath = (Get-Command git.exe -ErrorAction SilentlyContinue).Source
             if (!$gitPath) { return $null }
             
-            # Resolve path (Redundant but necessary for scope isolation)
             if ($gitPath -like "*\scoop\shims\*") {
                 $root = Split-Path (Split-Path $gitPath -Parent) -Parent
                 $bin = Join-Path $root "apps\git\current\usr\bin"
@@ -39,35 +37,52 @@ function gbin {
                     ForEach-Object { $options.Add($_.BaseName) }
 
                 return $options | ForEach-Object { 
-                    [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_) 
+                    # Using 'Command' type here helps suppress local file system suggestions
+                    [System.Management.Automation.CompletionResult]::new($_, $_, 'Command', $_) 
                 }
             }
         })]
         [string]$Utility,
 
+        # This parameter catches piped objects
+        [Parameter(ValueFromPipeline=$true)]
+        $InputObject,
+
         [Parameter(ValueFromRemainingArguments=$true)]
         [string[]]$Arguments
     )
 
-    process {
+    begin {
         $binPath = Get-GitUsrBinPath
         if (-not $binPath) { Write-Error "Git usr/bin not found."; return }
 
-        switch ($Utility) {
-            "--list" {
-                Get-ChildItem -Path $binPath -Filter "*.exe" | 
-                    Select-Object -ExpandProperty BaseName | 
-                    Format-Wide -Column 5
-                return
-            }
-            "--path" { $binPath; return }
+        # Handle non-executable flags
+        if ($Utility -eq "--list") {
+            Get-ChildItem -Path $binPath -Filter "*.exe" | 
+                Select-Object -ExpandProperty BaseName | 
+                Format-Wide -Column 5
+            return
         }
+        if ($Utility -eq "--path") { $binPath; return }
 
         $exePath = Join-Path $binPath "$Utility.exe"
-        if (Test-Path $exePath) {
+        if (-not (Test-Path $exePath)) {
+            Write-Host "[gbin] Error: '$Utility' not found." -ForegroundColor Red
+            return
+        }
+    }
+
+    process {
+        # If the utility is a meta-command (--list, etc), skip execution
+        if ($Utility -like "--*") { return }
+
+        if ($null -ne $InputObject) {
+            # If we have pipeline input, pipe the current object to the exe
+            $InputObject | & $exePath $Arguments
+        } 
+        elseif (-not $MyInvocation.ExpectingInput) {
+            # If there is NO pipeline expected at all, run normally
             & $exePath $Arguments
-        } else {
-            Write-Host "[gbin] Error: '$Utility' not found. Try 'gbin --list'" -ForegroundColor Red
         }
     }
 }
