@@ -78,7 +78,7 @@ function gbin {
 
         if ($null -ne $InputObject) {
             # If we have pipeline input, pipe the current object to the exe
-            $InputObject | & $exePath $Arguments
+            $InputObject | & $exePath @Arguments
         } 
         elseif (-not $MyInvocation.ExpectingInput) {
             # If there is NO pipeline expected at all, run normally
