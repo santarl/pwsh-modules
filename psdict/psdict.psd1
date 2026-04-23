@@ -21,7 +21,7 @@ GUID = 'b8f2156b-31ae-495e-9378-484d68d32bac' # You can generate a new one with 
 Author = 'santarl'
 
 # Company or vendor of this module
-CompanyName = 'Melting Ice inc.'
+CompanyName = 'santarl'
 
 # Copyright statement for this module
 Copyright = '(c) 2025 santarl. All rights reserved.'
@@ -54,5 +54,7 @@ PrivateData = @{
     } # End of PSData hashtable
 
 } # End of PrivateData hashtable
+
+}able
 
 }
