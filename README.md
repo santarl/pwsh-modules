@@ -2,6 +2,16 @@
 
 A collection of useful, high-quality PowerShell modules for automation and productivity.
 
+## 📋 Table of Contents
+*   [psdict](#1-psdict) - DICT protocol client.
+*   [Start-ForegroundProcess](#2-start-foregroundprocess) - Force windows to the foreground.
+*   [Set-ClipboardFile](#3-set-clipboardfile) - Copy actual files to the clipboard.
+*   [GitBinProxy](#4-gitbinproxy) - Proxy Git's GNU utilities.
+*   [New-ScoopShim](#5-new-scoopshim) - Create Scoop-style command shims.
+*   [Testing](#-testing)
+*   [Credits](#-credits)
+*   [License](#-license)
+
 ## 📦 Modules
 
 ### 1. psdict
@@ -66,6 +76,10 @@ scbf *.png -Quiet
 ### 4. [GitBinProxy](https://github.com/santarl/pwsh-modules/blob/main/GitBinProxy/README.md)
 
 A lightweight PowerShell module that proxies the GNU utilities included with Git for Windows (like sed, awk, grep, ls, etc.) into a single command: gbin.
+
+### 5. [New-ScoopShim](https://github.com/santarl/pwsh-modules/blob/main/New-ScoopShim/README.md)
+
+A utility to create Scoop-style shims and binary pairs. It allows you to create global aliases for any executable with predefined arguments, leveraging the Scoop shim architecture.
 
 ## 🧪 Testing
 
